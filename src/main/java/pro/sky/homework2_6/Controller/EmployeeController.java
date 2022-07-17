@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -44,5 +45,10 @@ public class EmployeeController {
             System.out.println("Неправильно переданы параметры!");
         }
         return employeeService.searchEmployee(name, lastName);
+    }
+
+    @GetMapping("/")
+    public List<Employee> getAll() {
+        return employeeService.staffList();
     }
 }
