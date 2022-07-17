@@ -26,14 +26,19 @@ public class EmployeeService {
 
     public Employee addEmployee(String name, String lastName) throws EmployeeStorageIsFullException, EmployeeAlreadyAddedException {
         Employee employee = new Employee(name, lastName);
+        int index = -1;
         for (int i = 0; i < staff.length; i++) {
             if (Objects.isNull(staff[i])){
-                staff[i] = employee;
+                index = i;
+                break;
             } else if (staff[i].getName().equals(name) && staff[i].getLastName().equals(lastName)) {
                 throw new EmployeeAlreadyAddedException("Employee is already added");
-            } else {
-                throw new EmployeeStorageIsFullException("Employee storage is full");
             }
+        }
+        if (index != -1) {
+            staff[index] = employee;
+        } else {
+            throw new EmployeeStorageIsFullException("Employee storage is full");
         }
         return employee;
     }

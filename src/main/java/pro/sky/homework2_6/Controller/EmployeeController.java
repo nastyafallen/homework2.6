@@ -45,6 +45,4 @@ public class EmployeeController {
         }
         return employeeService.searchEmployee(name, lastName);
     }
-
-
 }
